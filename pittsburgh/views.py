@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.http import Http404, HttpResponsePermanentRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from datetime import date, timedelta, datetime
 
-# from pittsburgh.models import PittsburghBill, PittsburghEvent
-from councilmatic_core.models import Action
+from pittsburgh.models import PittsburghBill, PittsburghEvent
 from councilmatic_core.views import *
 
 from haystack.query import SearchQuerySet
+
+from django.db.models import DateTimeField
+from django.db.models.functions import Cast
 
 
 class PittsburghIndexView(IndexView):

@@ -16,7 +16,7 @@ DEBUG = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pitt_councilmatic_sample',
+        'NAME': 'pittsburgh_councilmatic',
         'USER': '',
         'PASSWORD': '',
         'PORT': 5432,
@@ -27,8 +27,6 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
         'URL': 'http://127.0.0.1:8983/solr'
-        # ...or for multicore...
-        # 'URL': 'http://127.0.0.1:8983/solr/chicago',
     },
 }
 

@@ -1,9 +1,9 @@
 psycopg2==2.7.6.1
-django-councilmatic>=2.5.0
-django-councilmatic-notifications
+django-councilmatic==2.5.4
+django-councilmatic-notifications==2.5.1
 rq
 django-rq
-raven==5.30.0
+raven==6.10.0
 google-api-python-client==1.6.4
 icalendar==4.0.0
 gunicorn==19.6.0
@@ -11,3 +11,5 @@ pytest==3.2.5
 pytest-django==3.1.2
 pytest-mock==1.6.3
 lxml==4.3.0
+django-debug-toolbar==1.9.1
+setuptools

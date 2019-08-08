@@ -38,11 +38,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_rq',
+    'debug_toolbar',
     'haystack',
     'pittsburgh',
     'councilmatic_core',
+    'opencivicdata.core',
+    'opencivicdata.legislative',
     'notifications',
+    'django_rq',
     'password_reset',
     'adv_cache_tag',
 )
@@ -52,17 +55,15 @@ try:
 except NameError:
     pass
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'councilmatic.urls'
@@ -86,8 +87,8 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pitt_councilmatic_sample',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'pittsburgh_councilmatic',
         'USER': '',
         'PASSWORD': '',
         'PORT': 5432,

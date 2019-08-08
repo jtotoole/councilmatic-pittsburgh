@@ -24,7 +24,7 @@ from pittsburgh.views import *
 # from pittsburgh.feeds import *
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^search/', PittsburghCouncilmaticFacetedSearchView(searchqueryset=EmptySearchQuerySet,
                                        form_class=CouncilmaticSearchForm), name='search'),
     url(r'^about/$', PittsburghAboutView.as_view(), name='about'),
