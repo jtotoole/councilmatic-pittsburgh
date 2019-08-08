@@ -1,0 +1,520 @@
+/* city-specific css lives here */
+/* anything in this file will override custom.css in django-councilmatic */
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .navbar {
+    font-family: 'Merriweather', serif, 'Source Sans Pro', sans-serif;
+    /*font-family: 'ff-din-web', Arial, sans-serif;*/
+}
+
+a {
+    color: #212121;
+}
+
+a:hover {
+    color: #fdb81e;
+}
+
+h1, .h1 {
+    font-size: 36px;
+    color: #fdb81e;
+    background: none;
+}
+
+.h3 {
+    background: none;
+    color: #fff;
+}
+
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.padding-sm {
+    margin-bottom: 2em;
+}
+
+.navbar {
+    font-size: 16px;
+    background-color: #212121;
+}
+
+.nav-brand {
+    float: left;
+    padding: 19.5px 15px;
+    font-size: inherit;
+    font-weight: 700;
+    text-transform: 700;
+    line-height: 21px;
+    height: 60px;
+    color: #fdb81e;
+    background-color: #212121;
+}
+
+.nav-brand>img {
+    display: block
+}
+
+.nav-brand:hover {
+    color: #212121;
+    text-decoration: none;
+    background-color: #fdb81e;
+}
+
+.nav li a {
+  padding: 19.5px 10px;
+}
+
+#nav-items li a {
+    color: #fdb81e;
+
+}
+
+#nav-items li a:hover {
+    color: #212121;
+    background-color: #fdb81e;
+}
+
+.site-intro-search { margin-bottom: 1em; }
+
+#section-photo {
+    background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.8),
+          rgba(160, 160, 160, 0.1)
+        ),
+        url('/static/images/cityscape.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 380px;
+}
+
+#section-intro {
+    line-height: 1.6em;
+    padding-top: 1.6em;
+}
+
+#section-events {
+    background-color: #F8F8F8;
+    padding-bottom: 20px;
+}
+
+#map { margin-bottom: 2em; }
+
+#map-screenshot {
+    width: 90%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#map-screenshot:hover {opacity: 0.7;}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* map modal close button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.close:hover,
+.close:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.btn {
+    color: #fdb81e;
+    background-color: #212121;
+    border-color: #212121;
+}
+
+.btn:hover {
+    color: #212121;
+    background-color: #fdb81e;
+    border-color: #212121;
+}
+
+.map-heading {
+    display: inline-block;
+    padding-right: 12px;
+}
+
+.map-info {
+    display: inline-block;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+
+.map-info:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.map-info:focus {
+    text-decoration: none;
+    border: none;
+    outline:none;
+}
+
+.panel-body {
+    padding: 28px;
+    padding-top: 0px;
+}
+
+div#collapseURL .panel-body, div#collapsePDF .panel-body {
+    padding-top: 28px;
+}
+
+.infobox {
+    width: 22px;
+    margin: 0;
+}
+
+.popover {
+    max-width: 60%;
+    top: 1% !important;
+}
+
+.popover.right {
+    margin-right: 1%;
+}
+
+.leaflet-control-attribution { display: none; }
+
+.info-blurb ol {
+    font-size: .85em;
+}
+
+div#google_translate_element {
+    padding-top: 14px;
+    padding-left: 6px;
+    padding-right: 6px;
+    min-width: 185px;
+}
+
+.pdf-viewer { max-width: 840px; }
+
+.archive-link {
+    font-weight: 700;
+    font-size: 115%;
+}
+
+.login { margin-top: 2em; }
+
+#ceo-table { border-top: 2px solid #dddddd; }
+
+#ceo-table td { vertical-align: middle; }
+
+/* Labels for statues */
+.label {
+    padding: .25em .6em .25em;
+}
+
+.label-teal { background-color: #49A6AB; }
+
+.label-received, .label-approved, .label-adopted {
+    background-color: #1D9A43;
+}
+
+.label-active {
+    background-color: #E3D626;
+}
+
+.label-failed, .label-withdrawn {
+    background-color: #E00700;
+}
+
+/* Styles for order by options on search page */
+.nav a.sort-by, .nav a.btn { margin-left: 1.8em; }
+
+.nav-inline { margin-top: 21px; }
+
+div.order-nav { margin-top: 21px; }
+
+.btn-district {
+    background-color: #3D8A8E;
+    color: #fff;
+    padding: 4px 12px;
+}
+
+.btn-district:hover, .btn-district.active { background-color: #49A6AB; }
+
+.btn-sector {
+    background-color: #4D649E;
+    color: #fff;
+    padding: 4px 12px;
+}
+
+.btn-sector:hover, .btn-sector.active { background-color: #697EB5; }
+
+.btn-city {
+    background-color: #fff;
+    color: #fdb81e;
+    padding: 4px 12px;
+}
+
+.btn-city:hover, .btn-city.active { background-color: #EF8481; }
+
+div#toggleControls { margin-bottom: 1em; }
+
+.badge.district-badge { background-color: #3D8A8E; }
+
+.badge.sector-badge { background-color: #4D649E; }
+
+.badge.city-badge { background-color: #fdb81e; }
+
+#searchOn.well { padding: 12px; }
+
+#agendaModal div.modal-header {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+/* Styles for calendar pop-up. */
+#date-search .form-control { width: 50%; }
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+}
+
+.datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active {background-color: #49A6AB !important;
+}
+
+.btn-teal {
+    background-color: #49A6AB;
+    border: #49A6AB;
+    color: #fff;
+}
+
+.btn-teal:hover, .btn-teal.active { background-color: #70BEC2; }
+
+.btn-salmon {
+    background-color: #EB6864;
+    border: #EB6864;
+    color: #fff;
+}
+
+.btn-salmon:hover, .btn-salmon.active { background-color: #EF8481; }
+
+#events-form > div.col-xs-8, #events-form > div.col-xs-2 { padding-right: 0; }
+
+.scrollable {
+    overflow: scroll;
+    height: 700px;
+}
+
+.skinny-list {
+    width: 90%;
+    display: inline-block;
+}
+
+/* Styles for event detail */
+#pdf-check-viewer-test {
+    margin-bottom: 14px;
+}
+
+.social-buttons {
+    display: inline-flex;
+    list-style-type: none;
+}
+
+.footer {
+    background-color: #212121;
+    color: #fdb81e;
+}
+
+.footer a {
+    text-decoration: underline;
+    color: #fdb81e;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.footer h4 {
+    color: #fdb81e;
+}
+
+#logo {
+    height: 45px;
+    float: left;
+    position: relative;
+    bottom: -10px;
+    padding-right: 10px;
+}
+
+
+.navbar-toggle { margin-right: 0; }
+
+.navbar-default .navbar-toggle .icon-bar {
+    border-radius: 0;
+    margin-bottom: 5px;
+    width: 20px;
+}
+
+.pittsburgh-button {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #212121;
+    border: 0;
+    border-radius: 0.3rem;
+    color: #fdb81e;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.9rem;
+    line-height: 1;
+    outline: none;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    font-weight: 999;
+    -webkit-font-smoothing: antialiased;
+}
+
+.pittsburgh-button:hover {
+  background-color: #fdb81e;
+  color: #212121;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+img.github-icon {
+    width: 2.2rem !important;
+    vertical-align: text-bottom !important;
+}
+
+/* Media queries */
+@media only screen and (max-width : 767px) {
+
+    body {
+      padding-top: 40px;
+    }
+
+    #section-photo h2 {
+      font-size: 28px;
+    }
+
+    .navbar-brand {
+        width: 50%;
+        padding-top: 19px;
+    }
+
+    .social-buttons {
+      display: none;
+    }
+
+    .home-header {
+        font-size: 26px;
+    }
+
+    .nav a.sort-by, .nav a.btn {
+        margin-left: 0.4em;
+    }
+
+    .archive-link {
+        font-size: 14px;
+    }
+
+    .current-meeting-img {
+        max-width: 75%;
+    }
+
+    h1 {
+        padding-top: 50px;
+    }
+
+    #nav-items li a {
+        padding-top: 20px;
+    }
+}
+
+
+
+@media only screen and (max-width : 415px) {
+    .remove-order-value {
+        display: none;
+    }
+
+    .site-intro-search input {
+      max-height: 30px;
+      padding: 2px;
+    }
+
+    .site-intro-search .input-group-btn button {
+      max-height: 30px;
+      padding: 2px;
+    }
+    div.btn-group label.btn.btn-primary.btn-search-option.active,
+    div.btn-group label.btn.btn-primary.btn-search-option {
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1180px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+
+    .navbar>.container .navbar-brand,.navbar>.container-fluid .nav-brand {
+        margin-left:-15px
+    }
+}
+}

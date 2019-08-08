@@ -1,0 +1,219 @@
+{% load staticfiles %}
+{# {% load adv_cache %} #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %} - {{SITE_META.site_name}}</title>
+
+    {% include 'partials/seo.html' %}
+    {% include 'partials/icons.html' %}
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,300italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans|Roboto|Source+Sans+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.journal.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dataTables.bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/city_custom.css' %}" />
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+<body>
+
+    {# {% cache 600 nav_wrapper 'nav' %} #}
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid container-fluid-nav">
+        {# <div class="container"> #}
+            <div class="navbar-header">
+                {# <div id="nav-title"> #}
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="nav-brand" href="/">
+                    <img id="logo" src="/static/images/pittsburgh_crest.png"></img>
+                    <span id="logo-text">PITTSBURGH COUNCILMATIC</span>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="nav-items">
+                    <li>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a href='{% url 'council_members' %}'>{{ CITY_VOCAB.COUNCIL_MEMBERS }}</a>
+                    </li>
+                    <li>
+                        <a href='{% url 'committees' %}'>Committees</a>
+                    </li>
+                    <li>
+                        <a href='{% url 'events' %}'>{{ CITY_VOCAB.EVENTS }}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'search' %}">Legislation</a>
+                    </li>
+
+                    {# {% nocache %} #}
+
+                    {% if USING_NOTIFICATIONS and request.user.is_authenticated %}
+                    <li>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" title="Account">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="non-link text-muted small">{{request.user.email}}</li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="/account/subscriptions">
+                                        <i class="fa fa-bullhorn fa-fw" aria-hidden="true"></i>
+                                        Manage Alerts
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/logout/">
+                                        Sign out
+                                        <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endif %}
+
+                    {% if USING_NOTIFICATIONS and not request.user.is_authenticated %}
+                    <li>
+                        <a href="/login/" title="Sign in">
+                            Sign in
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    <li>
+                        <div id="google_translate_element"></div>
+                    </li>
+                    {# {% endnocache %} #}
+
+                </ul>
+
+            </div> <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    {% if messages %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    {% for message in messages %}
+                        <div {% if message.tags %}class="alert-signup alert alert-info {{ message.tags }}"{% endif %} role="alert">
+                                {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {# {% endcache %} #}
+
+    {% block full_content %}
+    {% endblock %}
+
+    <div class="container-fluid footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <aside class="widget footer-widget">
+                    <h4 class="widget-title">We want to hear from you!</h4>
+                    <p>With your insight, the Council discovers ways to improve the city we all call home. So we're meeting Pittsburghers where they are: online and in person. Keep your feedback coming!</p>
+                    <p>For issues specific to a neighborhood, it's best to contact the <a href="/districts/"><strong>Council Member<strong></a> representing that community.</p>
+                        <ul class="menu simple social-buttons">
+                            <li><a href="https://www.facebook.com/city.of.pittsburgh/"><img class="inline-icon footer-icon" src="/static/images/icons/social-icon-facebook.png"></a></li>
+                            <li><a href="https://twitter.com/citypgh"><img class="inline-icon footer-icon" src='/static/images/icons/social-icon-twitter.png'></a></li>
+                            <li><a href="https://youtube.com/channel/UC-YfIv9wvBjGT3LMxo9hLoQ"><img class="inline-icon footer-icon" src="/static/images/icons/social-icon-youtube.png"></a></li>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-md-5">
+                    <aside class="widget footer-widget">
+                    <h4 class="widget-title">Visit the Council</h4>
+                    <p>We're located on the fifth floor of <a href="https://www.google.com/maps/place/Pittsburgh+City-County+Building,+414+Grant+St,+Pittsburgh,+PA+15219/@40.4382355,-79.9988629,17z/data=!3m1!4b1!4m5!3m4!1s0x8834f15a11e68f4b:0x58cb29518e6049d5!8m2!3d40.4382355!4d-79.9966742"><strong>the Pittsburgh City-County Building (map).</strong></a>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% if USING_NOTIFICATIONS %}
+        <script>
+            var alertMsg = '<div class="alert alert-info" role="alert">' +
+            '<strong>Want to subscribe?</strong> Please <a href="{% url 'notifications_login' %}?next={{ request.get_full_path }}">login</a> or <a href="{% url 'notifications_signup' %}?next={{ request.get_full_path }}">create</a> a user account.' +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+        </script>
+    {% endif %}
+    <script type="text/javascript">
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+
+    <script>
+        var analyticsTrackingCode = '{{ANALYTICS_TRACKING_CODE}}';
+    </script>
+    <script src="{% static 'js/analytics_lib.js' %}"></script>
+    <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', gaTrack: false},
+                'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
