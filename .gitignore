@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+.DS_Store
+*~
+*#
+
+# Settings
+# settings_deployment.py
+
+# Collected Static Files
+static/**
+**/static/images/headshots/
+
+solr-4.10.4/**
+
+**/__pycache__
+
+downloads
+/keyrings/live/pubring.gpg~
+/keyrings/live/pubring.kbx~
+/keyrings/live/secring.gpg
+/scripts/after_install.sh
+/scripts/app_start.sh
+/scripts/app_stop.sh
+/scripts/validate_service.sh
+/configs/settings_deployment_staging.py
+/configs/settings_deployment_production.py
