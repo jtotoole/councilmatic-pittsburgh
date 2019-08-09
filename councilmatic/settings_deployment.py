@@ -15,7 +15,7 @@ DEBUG = False
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'pittsburgh_councilmatic',
         'USER': '',
         'PASSWORD': '',
