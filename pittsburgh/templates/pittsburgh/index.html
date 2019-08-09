@@ -1,0 +1,166 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{# {% load adv_cache %} #}
+{% block title %}Pittsburgh Councilmatic{% endblock %}
+
+{% block full_content %}
+{# {% cache 86400 index_wrapper 'index' %} #}
+    <div class="container-fluid" id="section-photo">
+        <div class="row-fluid">
+            <div class='col-sm-10 col-sm-offset-1'>
+                <br/>
+                <h2>
+                    <h1>Together, we make the laws governing Pittsburgh</h1>
+                </h2>
+                <br/>
+
+                <p class="h3 no-pad-top">
+                    <span>Search Pittsburgh legislation</span>
+                </p>
+
+                <form class="search form-search=" action="/search/" method="GET">
+                    <div class="input-group site-intro-search">
+                        <input name="q" type="text" class="input-lg form-control" placeholder="police, zoning, file #2019-1586, etc.">
+                        <div class='input-group-btn'>
+                            <button type="submit" class="btn btn-lg btn-primary">
+                                <i class='fa fa-fw fa-search'></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="divider"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="section-intro">
+        <div class="row-fluid">
+            <div class='col-sm-10 col-sm-offset-1'>
+                <div class="divider"></div>
+
+                <div class='row'>
+                    <div class='col-sm-8'>
+                        <p>Welcome! Pittsburgh Councilmatic is a tool to help residents engage with city government. You can search legislation, register to speak at a hearing, or <a href='/login'>create personalized alerts</a> for a subject or specific bill.
+                        <p>Pittsburgh City Council consists of <a href='/council-members/' target="_blank">nine elected council members</a> who draft legislation to shape the city. The council works with <a href='/person/peduto-bill'  target="_blank">Bill Peduto</a>, the Mayor, and <a href='/person/pree-brenda/' target="_blank">Brenda Pree</a>, the City Clerk.</p>
+
+                        <p>
+                            <strong>Pittsburgh Councilmatic</strong> tracks all things related to Pittsburgh City Council:
+                            <ul>
+                                <li>
+                                    the <a href='/search/' target="_blank">legislation</a> introduced and passed
+                                </li>
+                                <li>
+                                    its various <a href='/committees/' target="_blank">committees</a> and the <a href='/events/'  target="_blank">meetings</a> they hold
+                                </li>
+                                <li>
+                                    the bill sponsorships and voting records of<a href='/council-members/' target="_blank"> council members</a>
+                                </li>
+                            </ul>
+                        </p>
+                        <br>
+                        <p>
+                            <span class="non-mobile-only">
+                                <a href='/about#about-city-council' class='btn btn-primary' target="_blank">How City Council works<i class="fa fa-fw fa-chevron-right"></i>
+                                </a>
+                            </span>
+                            <span class="mobile-only">
+                                <a href='/about#about-city-council' class='btn btn-primary' target="_blank">How City Council works<i class="fa fa-fw fa-chevron-right"></i></a>
+                            </span>
+
+                        </p>
+                    </div>
+
+                    <div class= 'col-sm-4 desktop-only'>
+                        <p class='text-center'>
+                            <img id="map-screenshot" src='/static/images/pittsburgh_ward_map.png' class='img-responsive img-rounded' title='City of Pittsburgh Council Districts' alt="Pittsburgh's nine council districts" />
+                            <em>Pittsburgh's nine council districts</em>
+                        </p>
+                        <div id="map-modal" class="modal">
+                            <span class="close">&times;</span>
+                            <img id="map-modal-image" class="modal-content">
+                        </div>
+                    </div>
+
+                <div class="divider"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="section-engage">
+        <div class="row-fluid">
+            <div class='col-sm-10 col-sm-offset-1'>
+                <h2>
+                    <span class="non-mobile-only">
+                        <i class="fa fa-fw fa-institution"></i>Engage City Council
+                    </span>
+                    <span class="mobile-only">
+                        <i class="fa fa-institution"></i>
+                        Engage City Council
+                    </span>
+                </h2>
+
+                <div class='row'>
+                    <div class='col-sm-6'>
+                        <h4>Citywide issues</h4>
+                        <p>The Mayor proposes most city-wide policies. These include <a href='/search/?q=&selected_facets=topics_exact:City Business' target="_blank">business transactions</a>, changes to the <a href='/search/?q=&selected_facets=topics_exact:Municipal Code' target="_blank">municipal code</a>, <a href='/search/?q=&selected_facets=topics_exact:Bonds' target="_blank">bond issuance</a> and <a href='/search/?q=&selected_facets=topics_exact:Appointment' target="_blank">appointments</a>.</p>
+
+                        <p>
+                            <a class='btn btn-primary' href='/search/?q=&selected_facets=topics_exact:City Matters'>
+                                View citywide legislation <i class="fa fa-fw fa-chevron-right"></i>
+                            </a>
+                        </p>
+                        <br/>
+                    </div>
+                    <div class='col-sm-6'>
+                        <h4>Local issues</h4>
+                        <p>At the local level, matters like <a href='/search/?q=&selected_facets=topics_exact:Land Use' target="_blank">land use</a>, <a href='/search/?q=&selected_facets=topics_exact:Sign permits' target="_blank">signs</a>, <a href='/search/?q=&selected_facets=topics_exact:Parking' target="_blank">street parking</a>, <a href='/search/?q=&selected_facets=topics_exact:Business Permits and Privileges' target="_blank">business permits</a>, and other <a href='/search/?q=&selected_facets=topics_exact:Residents' target="_blank">residents issues</a> require the local councilmember's support.</p>
+
+                        <p>
+                            <a class='btn btn-primary' href='/council-members/'>
+                                Find your councilmember <i class="fa fa-fw fa-chevron-right"></i>
+                            </a>
+                        </p>
+                        <br/>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{# {% endcache %} #}
+{% endblock %}
+
+{% block extra_js %}
+
+    <script type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name" : "Pittsburgh Councilmatic",
+      "url": "https://councilmatic.pittsburghpa.gov/",
+      "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://councilmatic.pittsburghpa.gov/search/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+          }
+      }
+    </script>
+
+    {# map modal trigger #}
+
+    <script>
+    $('#map-screenshot').click(function(){
+        $('#map-modal').css('display', 'block');
+        $('.site-intro-search, .navbar').hide();
+        $('#map-modal-image').attr('src', this.src);
+    });
+
+    $('.close').click(function(){
+        $('#map-modal').css('display', 'none');
+        $('.site-intro-search, .navbar').show();
+    });
+    </script>
+{% endblock %}
