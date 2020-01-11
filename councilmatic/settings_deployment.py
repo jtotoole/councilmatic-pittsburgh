@@ -3,12 +3,9 @@
 
 import os
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'replacethiswithsomethingsecret'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set this to True while you are developing
-DEBUG = False
+DEBUG = os.getenv('DEBUG')
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -22,6 +19,8 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -40,7 +39,7 @@ CACHES = {
 }
 
 # Set this to flush the cache at /flush-cache/{FLUSH_KEY}
-FLUSH_KEY = 'super secret junk'
+FLUSH_KEY = os.getenv('FLUSH_KEY')
 
 # Set this to allow Disqus comments to render
 DISQUS_SHORTNAME = None

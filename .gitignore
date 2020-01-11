@@ -13,3 +13,7 @@ static/**
 solr-4.10.4/**
 
 **/__pycache__
+
+.idea/**
+
+.env
