@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils.html import mark_safe
-from councilmatic_core.models import Bill, Event
+from councilmatic_core.models import Bill, Event, Person
+from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS
 from datetime import datetime
 import pytz
 import re
@@ -21,3 +22,9 @@ class PittsburghEvent(Event):
     class Meta:
         proxy = True
         app_label = 'pittsburgh'
+
+
+class PittsburghPerson(Person):
+    def get_headshot(self):
+        if self.slug in MANUAL_HEADSHOTS:
+            self.headshot.url = 'images/' + MANUAL_HEADSHOTS[self.slug]['image']

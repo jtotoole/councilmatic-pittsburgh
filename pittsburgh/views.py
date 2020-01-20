@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from datetime import date, timedelta, datetime
 
-from pittsburgh.models import PittsburghBill, PittsburghEvent
+from pittsburgh.models import PittsburghBill, PittsburghEvent, PittsburghPerson
 from councilmatic_core.views import *
 
 from haystack.query import SearchQuerySet
@@ -14,8 +14,14 @@ from django.db.models import DateTimeField
 from django.db.models.functions import Cast
 from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS
 
+
 class PittsburghIndexView(IndexView):
     template_name = 'pittsburgh/index.html'
+    bill_model = PittsburghBill
+    event_model = PittsburghEvent
+
+    def last_meeting(self):
+        return PittsburghEvent.most_recent_past_city_council_meeting()
 
 
 class PittsburghAboutView(AboutView):
@@ -24,14 +30,29 @@ class PittsburghAboutView(AboutView):
 
 class PittsburghEventsView(EventsView):
     template_name = 'pittsburgh/events.html'
+    event_model = PittsburghEvent
 
 
 class PittsburghCouncilMembersView(CouncilMembersView):
-    template_name = 'pittsburgh/council_members.html'
+    template_name = 'pittsburgh/council-members.html'
+    person_model = PittsburghPerson
+
+    def get_context_data(self, **kwargs):
+        context = super(PittsburghCouncilMembersView, self).get_context_data(**kwargs)
+
+        posts = context['posts']
+
+        for post in posts:
+            if post.current_member.person.slug in MANUAL_HEADSHOTS:
+                post.current_member.person.headshot = 'images/' + \
+                                                          MANUAL_HEADSHOTS[post.current_member.person.slug]['image']
+
+        return context
 
 
 class PittsburghPersonDetailView(PersonDetailView):
     template_name = 'pittsburgh/person.html'
+    person_model = PittsburghPerson
 
     def get_context_data(self, **kwargs):
         context = super(PittsburghPersonDetailView, self).get_context_data(**kwargs)
@@ -111,3 +132,7 @@ class PittsburghCouncilmaticFacetedSearchView(CouncilmaticFacetedSearchView):
                 kwargs['searchqueryset'] = sqs.order_by('-last_action_date')
 
         return self.form_class(data, **kwargs)
+
+
+class EventDetailView(DetailView):
+    model = PittsburghEvent
