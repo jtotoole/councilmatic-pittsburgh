@@ -1,3 +1,5 @@
+import os
+
 # These are all the settings that are specific to a jurisdiction
 
 ###############################
@@ -5,10 +7,10 @@
 ###############################
 
 OCD_JURISDICTION_ID = 'ocd-jurisdiction/country:us/state:pa/place:pittsburgh'
-OCD_CITY_COUNCIL_ID = 'ocd-organization/foo' # -- no ID for Pittsburgh at present (2/14/19)
+OCD_CITY_COUNCIL_ID = 'ocd-jurisdiction/country:us/state:pa/place:pittsburgh/legislature'
 OCD_CITY_COUNCIL_NAME = 'Pittsburgh City Council'
 CITY_COUNCIL_NAME = 'Pittsburgh City Council'
-LEGISLATIVE_SESSIONS = ['2019'] # the last one in this list should be the current legislative session
+LEGISLATIVE_SESSIONS = ['2019', '2020']  # the last one in this list should be the current legislative session
 CITY_NAME = 'Pittsburgh'
 CITY_NAME_SHORT = 'Pittsburgh'
 
@@ -30,15 +32,15 @@ APP_NAME = 'pittsburgh'
 
 # this is for populating meta tags
 SITE_META = {
-    'site_name' : 'Pittsburgh Councilmatic',       # e.g. 'Pittsburgh Councilmatc'
-    'site_desc' : 'City Council, demystified. Keep tabs on Pittsburgh legislation, votes, & hearings.',       # e.g. 'City Council, demystified. Keep tabs on Pittsburgh legislation, aldermen, & meetings.'
-    'site_author' : 'City of Pittsburgh',     # e.g. 'DataMade'
-    'site_url' : '',        # TODO--e.g. 'https://chicago.councilmatic.org'
-    'twitter_site': '@PghIP',     # e.g. '@DataMadeCo'
-    'twitter_creator': '@PghIP',  # e.g. '@DataMadeCo'
+    'site_name': 'Pittsburgh Councilmatic',
+    'site_desc': 'City Council, demystified. Keep tabs on Pittsburgh legislation, votes, & hearings.',
+    'site_author': 'City of Pittsburgh',
+    'site_url': '',        # TODO--e.g. 'https://chicago.councilmatic.org'
+    'twitter_site': '@PghIP',     # e.g.
+    'twitter_creator': '@PghIP',  # e.g.
 }
 
-LEGISTAR_URL = 'https://pittsburgh.legistar.com/Legislation.aspx' # e.g. 'https://chicago.legistar.com/Legislation.aspx'
+LEGISTAR_URL = 'https://pittsburgh.legistar.com/Legislation.aspx'
 
 
 # this is for the boundaries of municipal districts, to add
@@ -52,7 +54,7 @@ BOUNDARY_SET = ''           # e.g. 'chicago-wards-2015'
 # set MAP_CONFIG = None to hide map
 MAP_CONFIG = {
     'center': [40.4406, -79.9959],
-    'zoom': 10,
+    'zoom': 12,
     'color': "#54afe8",
     'highlight_color': "#C00000",
 }
@@ -60,14 +62,14 @@ MAP_CONFIG = {
 
 FOOTER_CREDITS = [
     {
-        'name':     'Pittsburgh Digital Services Studio', # e.g. 'DataMade'
-        'url':      'https://www.youtube.com/watch?v=dQw4w9WgXcQ', # e.g. 'http://datamade.us'
+        'name':     'City of Pittsburgh',  # e.g. 'DataMade'
+        'url':      'https://www.youtube.com/watch?v=dQw4w9WgXcQ',  # e.g. 'http://datamade.us'
         # 'image':    '', # e.g. 'datamade-logo.png'
     },
 ]
 
 # this is the default text in search bars
-SEARCH_PLACEHOLDER_TEXT = 'Search council' # e.g. 'police, zoning, O2015-7825, etc.'
+SEARCH_PLACEHOLDER_TEXT = 'Search council'  # e.g. 'police, zoning, O2015-7825, etc.'
 
 
 
@@ -251,14 +253,67 @@ LEGISLATION_TYPE_DESCRIPTIONS = [
 # these keys should match committee slugs
 COMMITTEE_DESCRIPTIONS = {
     # e.g. "committee-on-aviation" : "The Committee on Aviation has jurisdiction over matters relating to aviation and airports.",
-    "committee-on-finance-and-law" : "The Committee on Finance and Law has charge of and jurisdiction over all ordinances, resolutions, bills, papers and other matters relating to: Bonds and Debt Issuance; City Banking/Investment; Creation of Offices or Positions of any kind; Department of Finance; Enterprise Resource System; Equal Opportunity Review Commission (EORC); Ethics; Law Department; Multi-year Capital Improvement Program; Office of Management and Budget (OMB) Operating & Capital Budgets; Pension Fiscal; Real Estate; Taxation; Treasurer and such other business as may be referred to it by the Council, provided, however, that where money has been specifically appropriated by the Council for any of the purposes of the departments of the City government, that said committee shall then have complete charge and jurisdiction. Council Chairperson: Rev. Ricky V. Burgess",
-    "committee-on-public-safety-services": "The Committee on Public Safety Services has charge of and jurisdiction over all ordinances, resolutions, bills, papers, and other matters of every kind pertaining to: Bureau of Animal Control; Permits; Licenses & Inspections; Bureau of Fire; Bureau of Police; Citizens Police Review Board (CPRB); Department of Public Safety; Emergency Management Agency (EMA); Emergency Medical Services (EMS); Emergency Operations and Communications; Homeland Security; Weed and Seed. Council Chairperson: R. Daniel Lavelle",
-    "committee-on-public-works": "The Committee on Public Works has charge of and jurisdiction over all ordinances, resolutions, bills, or papers affecting or pertaining to: Bureau of Administration; Bureau of Engineering, Bureau of Environmental Services, Bureau of Operations, Construction, Department of Public Works, Environmental Services and Control, Facilities Operation and Maintenance (Not Parks or Recreation related), Forestry, Franchises and Rights of Way to Corporations, Public Right-of-Way Maintenance, Shade Tree, Streets Lighting. Council Chairperson: Theresa Kail-Smith",
-    "committee-on-human-resources": "The Committee on Human Resources has charge of and jurisdiction over all ordinances, resolutions, bills, or papers affecting or pertaining to: Benefits; Department of Personnel and Civil Service; Equal Employment Opportunity Commission (EEOC); Human Relations Commission (HRC); Job Training Partnership Act (JTPA); Office of Municipal Investigation (OMI); Payroll Administration/System; Pension Benefits Administration; Personnel (inclusive of Salaries and Employment Numbers). Council Chairperson: Darlene Harris",
-    "committee-on-urban-recreation": "The Committee on Urban Recreation has charge of and jurisdiction over all ordinances, resolutions, bills, or papers pertaining to: Department of Parks and Recreation (CitiParks); Greenways; Libraries; Park Programming; Recreation Facilities Maintenance; Senior Centers; Programming and Advisory Council; Special Events; Trails; Youth Policy. Council Chairperson: Anthony Coghill",
-    "committee-on-innovation-performance-and-management": "The Committee on Innovation, Performance and Asset Management has charge of and jurisdiction over all ordinances, resolutions, bills, papers, and other matters relating to: 311 Mayor's Response Center; City Cable Channel; Department of Innovation & Performance; Facilities Inventory and Management; Fleet Maintenance, Repair, and Alteration; Purchasing and B Contracts; Information Technology; Data Collection and Analysis; Operational Performance Targets; Sustainabillity Initiatives; Professional Management Systems. Council Chairperson: Erika Strassburger",
-    "committee-on-intergovernmental-affairs": "The Committee on Intergovernmental Affairs has charge of and jurisdiction over all ordinances, resolutions, bills, or papers affecting or pertaining to: Allegheny Regional Assets District (ARAD); Authorities - Agreements; County; Federal; Local governmental cooperation agreements; Liquor Licenses; Pennsylvania League of Cities and Municipalities; Port of Pittsburgh; School Boards; State; Tourism - Visit Pittsburgh. Council Chairperson: Corey O'Connor",
-    "committee-on-hearings": "The Committee on Hearings has charge of the jurisdiction and scheduling of: Appointments and Reappointments; Executive Sessions; Public Hearings; Public Meetings. Council Chairperson: Bruce Kraus",
+    "committee-on-finance-and-law" : "The Committee on Finance and Law has charge of and jurisdiction over all "
+                                     "ordinances, resolutions, bills, papers and other matters relating to: Bonds and "
+                                     "Debt Issuance; City Banking/Investment; Creation of Offices or Positions of any "
+                                     "kind; Department of Finance; Enterprise Resource System; Equal Opportunity "
+                                     "Review Commission (EORC); Ethics; Law Department; Multi-year Capital "
+                                     "Improvement Program; Office of Management and Budget (OMB) Operating & Capital "
+                                     "Budgets; Pension Fiscal; Real Estate; Taxation; Treasurer and such other "
+                                     "business as may be referred to it by the Council, provided, however, "
+                                     "that where money has been specifically appropriated by the Council for any of "
+                                     "the purposes of the departments of the City government, that said committee "
+                                     "shall then have complete charge and jurisdiction. Council Chairperson: Rev. "
+                                     "Ricky V. Burgess",
+    "committee-on-public-safety-services": "The Committee on Public Safety Services has charge of and jurisdiction "
+                                           "over all ordinances, resolutions, bills, papers, and other matters of "
+                                           "every kind pertaining to: Bureau of Animal Control; Permits; Licenses & "
+                                           "Inspections; Bureau of Fire; Bureau of Police; Citizens Police Review "
+                                           "Board (CPRB); Department of Public Safety; Emergency Management Agency ("
+                                           "EMA); Emergency Medical Services (EMS); Emergency Operations and "
+                                           "Communications; Homeland Security; Weed and Seed. Council Chairperson: R. "
+                                           "Daniel Lavelle",
+    "committee-on-public-works": "The Committee on Public Works has charge of and jurisdiction over all ordinances, "
+                                 "resolutions, bills, or papers affecting or pertaining to: Bureau of Administration; "
+                                 "Bureau of Engineering, Bureau of Environmental Services, Bureau of Operations, "
+                                 "Construction, Department of Public Works, Environmental Services and Control, "
+                                 "Facilities Operation and Maintenance (Not Parks or Recreation related), Forestry, "
+                                 "Franchises and Rights of Way to Corporations, Public Right-of-Way Maintenance, "
+                                 "Shade Tree, Streets Lighting. Council Chairperson: Theresa Kail-Smith",
+    "committee-on-human-resources": "The Committee on Human Resources has charge of and jurisdiction over all "
+                                    "ordinances, resolutions, bills, or papers affecting or pertaining to: Benefits; "
+                                    "Department of Personnel and Civil Service; Equal Employment Opportunity "
+                                    "Commission (EEOC); Human Relations Commission (HRC); Job Training Partnership "
+                                    "Act (JTPA); Office of Municipal Investigation (OMI); Payroll "
+                                    "Administration/System; Pension Benefits Administration; Personnel (inclusive of "
+                                    "Salaries and Employment Numbers). Council Chairperson: Darlene Harris",
+    "committee-on-urban-recreation": "The Committee on Urban Recreation has charge of and jurisdiction over all "
+                                     "ordinances, resolutions, bills, or papers pertaining to: Department of Parks "
+                                     "and Recreation (CitiParks); Greenways; Libraries; Park Programming; Recreation "
+                                     "Facilities Maintenance; Senior Centers; Programming and Advisory Council; "
+                                     "Special Events; Trails; Youth Policy. Council Chairperson: Anthony Coghill",
+    "committee-on-innovation-performance-and-management": "The Committee on Innovation, Performance and Asset "
+                                                          "Management has charge of and jurisdiction over all "
+                                                          "ordinances, resolutions, bills, papers, and other matters "
+                                                          "relating to: 311 Mayor's Response Center; City Cable "
+                                                          "Channel; Department of Innovation & Performance; "
+                                                          "Facilities Inventory and Management; Fleet Maintenance, "
+                                                          "Repair, and Alteration; Purchasing and B Contracts; "
+                                                          "Information Technology; Data Collection and Analysis; "
+                                                          "Operational Performance Targets; Sustainabillity "
+                                                          "Initiatives; Professional Management Systems. Council "
+                                                          "Chairperson: Erika Strassburger",
+    "committee-on-intergovernmental-affairs": "The Committee on Intergovernmental Affairs has charge of and "
+                                              "jurisdiction over all ordinances, resolutions, bills, "
+                                              "or papers affecting or pertaining to: Allegheny Regional Assets "
+                                              "District (ARAD); Authorities - Agreements; County; Federal; Local "
+                                              "governmental cooperation agreements; Liquor Licenses; Pennsylvania "
+                                              "League of Cities and Municipalities; Port of Pittsburgh; School "
+                                              "Boards; State; Tourism - Visit Pittsburgh. Council Chairperson: Corey "
+                                              "O'Connor",
+    "committee-on-hearings": "The Committee on Hearings has charge of the jurisdiction and scheduling of: "
+                             "Appointments and Reappointments; Executive Sessions; Public Hearings; Public Meetings. "
+                             "Council Chairperson: Bruce Kraus",
 }
 
 # these blurbs populate the wells on the committees, events, & council members pages
@@ -270,36 +325,47 @@ ABOUT_BLURBS = {
 
 # these override the headshots that are automatically populated
 # the keys should match a person's slug
+
 MANUAL_HEADSHOTS = {
-    'peduto-bill': {'source': 'pittsburghpa.gov', 'image': 'http://pittsburghpa.gov/images/mayor-profile/peduto.jpg'},
-    'burgess-ricky': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/burgess-ricky.jpg'},
-    'coghill-anthony': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/coghill-anthony.jpg'},
-    'gross-deb': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/gross-deb.jpg'},
-    'harris-darlene': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/harris-darlene.jpg'},
-    'kail-smith-theresa': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/kail-smith-theresa.jpg'},
-    'kraus-bruce': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/kraus-bruce.jpg'},
-    'lavelle-daniel-r': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/lavelle-daniel-r.jpg'},
-    'oconnor-corey': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/oconnor-corey.jpg'},
-    'strassburger-erika': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/strassburger-erika.jpg'},
+    'william-peduto-03a1cbeed289': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/peduto.png'},
+    'reverend-ricky-v-burgess-e6be10da476b': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/burgess.jpg'},
+    'anthony-coghill-c227693ce28c': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/coghill.jpg'},
+    'deborah-l-gross-36696a2838ea': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/gross.jpg'},
+    'bobby-wilson-8d4fc4fb499e': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/wilson.jpg'},
+    'theresa-kail-smith-d8e06c1f56c0': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/smith.jpg'},
+    'bruce-a-kraus-98881f116f97': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/kraus.jpg'},
+    'r-daniel-lavelle-18f0114e8773': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/lavelle.jpg'},
+    'corey-oconnor-8993bcfc8d11': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/oconnor.jpg'},
+    'erika-strassburger-fc76f94ccd73': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/strassburger.jpg'},
 }
 
 
 CONTACT_INFO = {
-    'peduto-bill': {'twitter': {'handle': '@billpeduto', 'url': 'https://twitter.com/billpeduto'}, 'phone': '', 'email': ''},
-    'burgess-ricky': {'twitter': {'handle': '@RevBurgessPgh', 'url': 'https://twitter.com/RevBurgessPgh'}, 'phone': '412-255-2137/412-255-8658', 'email': 'reverend.burgess@pittsburghpa.gov'},
-    'coghill-anthony': {'twitter': {'handle': '@CoghillAnthony', 'url': 'https://twitter.com/CoghillAnthony'}, 'phone': '412-255-2131', 'email': 'kaitlyn.fisher@pittsburghpa.gov'},
-    'gross-deb': {'twitter': {'handle': '@DebGrosspgh', 'url': 'https://twitter.com/DebGrosspgh'}, 'phone': '412-255-2140', 'email': 'district7@pittsburghpa.gov'},
-    'harris-darlene': {'twitter': {'handle': '@Darlene4Pgh', 'url': 'https://twitter.com/Darlene4Pgh'}, 'phone': '412-255-2135', 'email': ''},
-    'kail-smith-theresa': {'twitter': {'handle': '@tkailsmith', 'url': 'https://twitter.com/tkailsmith'}, 'phone': '412-255-8963', 'email': 'jill.harris@pittsburghpa.gov'},
-    'kraus-bruce': {'twitter': {'handle': '@BruceKraus', 'url': 'https://twitter.com/BruceKraus'}, 'phone': '412-255-2130', 'email': 'robert.charland@pittsburghpa.gov'},
-    'lavelle-daniel-r': {'twitter': {'handle': '@RDLavelle', 'url': 'https://twitter.com/RDLavelle'}, 'phone': '412-255-2134', 'email': 'cassandra.williams@pittsburghpa.gov'},
-    'oconnor-corey': {'twitter': {'handle': '@CoreyOConnorPGH', 'url': 'https://twitter.com/CoreyOConnorPGH'}, 'phone': '412-255-8965', 'email': 'connie.sukernek@pittsburghpa.gov'},
-    'strassburger-erika': {'twitter': {'handle': '@erikastrassbrgr', 'url': 'https://twitter.com/erikastrassbrgr'}, 'phone': '412-255-2133', 'email': 'erika.strassburger@pittsburghpa.gov'},
+    'william-peduto-03a1cbeed289': {'twitter': {'handle': '@billpeduto', 'url': 'https://twitter.com/billpeduto'}, 'phone': '',
+                    'email': ''},
+    'reverend-ricky-v-burgess-e6be10da476b': {'twitter': {'handle': '@RevBurgessPgh', 'url': 'https://twitter.com/RevBurgessPgh'},
+                      'phone': '412-255-2137/412-255-8658', 'email': 'reverend.burgess@pittsburghpa.gov'},
+    'anthony-coghill-c227693ce28c': {'twitter': {'handle': '@CoghillAnthony', 'url': 'https://twitter.com/CoghillAnthony'},
+                        'phone': '412-255-2131', 'email': 'kaitlyn.fisher@pittsburghpa.gov'},
+    'deborah-l-gross-36696a2838ea': {'twitter': {'handle': '@DebGrosspgh', 'url': 'https://twitter.com/DebGrosspgh'},
+                  'phone': '412-255-2140', 'email': 'district7@pittsburghpa.gov'},
+    'bobby-wilson-8d4fc4fb499e': {'twitter': {'handle': '@bobbywilson412', 'url': 'https://twitter.com/bobbywilson412'},
+                                  'phone': '412-255-2135', 'email': ''},
+    'kail-smith-theresa': {'twitter': {'handle': '@tkailsmith', 'url': 'https://twitter.com/tkailsmith'},
+                           'phone': '412-255-8963', 'email': 'jill.harris@pittsburghpa.gov'},
+    'bruce-a-kraus-98881f116f97': {'twitter': {'handle': '@BruceKraus', 'url': 'https://twitter.com/BruceKraus'},
+                                   'phone': '412-255-2130', 'email': 'robert.charland@pittsburghpa.gov'},
+    'r-daniel-lavelle-18f0114e8773': {'twitter': {'handle': '@RDLavelle', 'url': 'https://twitter.com/RDLavelle'},
+                         'phone': '412-255-2134', 'email': 'cassandra.williams@pittsburghpa.gov'},
+    'corey-oconnor-8993bcfc8d11': {'twitter': {'handle': '@CoreyOConnorPGH', 'url': 'https://twitter.com/CoreyOConnorPGH'},
+                      'phone': '412-255-8965', 'email': 'connie.sukernek@pittsburghpa.gov'},
+    'erika-strassburger-fc76f94ccd73': {'twitter': {'handle': '@erikastrassbrgr', 'url': 'https://twitter.com/erikastrassbrgr'},
+                           'phone': '412-255-2133', 'email': 'erika.strassburger@pittsburghpa.gov'},
 }
 # notable positions that aren't district representatives, e.g. mayor & city clerk
 # keys should match person slugs
 EXTRA_TITLES = {
-    'peduto-bill': 'Mayor',
+    'william-peduto-03a1cbeed289': 'Mayor',
 }
 
 USING_NOTIFICATIONS = True

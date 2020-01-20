@@ -33,7 +33,7 @@ HAYSTACK_CONNECTIONS = {
 # developers, set your BACKEND to 'django.core.cache.backends.dummy.DummyCache'
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'BACKEND': os.getenv('BACKEND_DB_CACHE'),
         'LOCATION': 'councilmatic_cache',
     }
 }
@@ -48,7 +48,7 @@ DISQUS_SHORTNAME = None
 ANALYTICS_TRACKING_CODE = ''
 
 # Google Maps API Key
-GOOGLE_API_KEY = ''
+GOOGLE_API_KEY = os.getenv('GOOGLE_MAPS_KEY')
 
 HEADSHOT_PATH = os.path.join(os.path.dirname(__file__), '..'
                              '/pittsburgh/static/images/')

@@ -12,7 +12,7 @@ from haystack.query import SearchQuerySet
 
 from django.db.models import DateTimeField
 from django.db.models.functions import Cast
-
+from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS
 
 class PittsburghIndexView(IndexView):
     template_name = 'pittsburgh/index.html'
@@ -27,7 +27,31 @@ class PittsburghEventsView(EventsView):
 
 
 class PittsburghCouncilMembersView(CouncilMembersView):
-    template_name = 'pittsburgh/council-members.html'
+    template_name = 'pittsburgh/council_members.html'
+
+
+class PittsburghPersonDetailView(PersonDetailView):
+    template_name = 'pittsburgh/person.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PittsburghPersonDetailView, self).get_context_data(**kwargs)
+
+        person = context['person']
+
+        if person.latest_council_membership:
+            context['tenure_start'] = person.latest_council_membership.start_date_dt.strftime("%B %d, %Y")
+
+        context['chair_positions'] = person.chair_role_memberships
+
+        if person.slug in settings.CONTACT_INFO:
+            context['phone'] = settings.CONTACT_INFO[person.slug]['phone']
+            context['twitter_handle'] = settings.CONTACT_INFO[person.slug]['twitter']['handle']
+            context['twitter_url'] = settings.CONTACT_INFO[person.slug]['twitter']['url']
+
+        if person.slug in MANUAL_HEADSHOTS:
+            person.headshot = 'images/' + MANUAL_HEADSHOTS[person.slug]['image']
+
+        return context
 
 
 class PittsburghCouncilmaticFacetedSearchView(CouncilmaticFacetedSearchView):

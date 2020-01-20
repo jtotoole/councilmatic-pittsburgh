@@ -29,6 +29,8 @@ urlpatterns = [
                                        form_class=CouncilmaticSearchForm), name='search'),
     url(r'^about/$', PittsburghAboutView.as_view(), name='about'),
     url(r'^$', PittsburghIndexView.as_view(), name='index'),
+    url(r'^person/(?P<slug>[^/]+)/$', PittsburghPersonDetailView.as_view(), name='person'),
+    url(r'^council-members/', PittsburghCouncilMembersView.as_view(), name='council_members'),
     url(r'', include('councilmatic_core.urls')),
 ]
 

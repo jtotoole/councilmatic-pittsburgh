@@ -1,6 +1,7 @@
 psycopg2==2.7.6.1
 django-councilmatic==2.5.4
 django-councilmatic-notifications==2.5.1
+opencivicdata==3.0.0
 rq
 django-rq
 raven==6.10.0
