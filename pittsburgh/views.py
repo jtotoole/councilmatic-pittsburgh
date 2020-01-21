@@ -12,7 +12,7 @@ from haystack.query import SearchQuerySet
 
 from django.db.models import DateTimeField
 from django.db.models.functions import Cast
-from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS
+from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS, CONTACT_INFO
 
 
 class PittsburghIndexView(IndexView):
@@ -64,14 +64,18 @@ class PittsburghPersonDetailView(PersonDetailView):
 
         context['chair_positions'] = person.chair_role_memberships
 
-        if person.slug in settings.CONTACT_INFO:
-            context['phone'] = settings.CONTACT_INFO[person.slug]['phone']
-            context['twitter_handle'] = settings.CONTACT_INFO[person.slug]['twitter']['handle']
-            context['twitter_url'] = settings.CONTACT_INFO[person.slug]['twitter']['url']
+        if person.slug in CONTACT_INFO:
+            context['phone'] = CONTACT_INFO[person.slug]['phone']
+            context['website'] = CONTACT_INFO[person.slug]['website']
+            context['email'] = CONTACT_INFO[person.slug]['email']
+            context['twitter_handle'] = CONTACT_INFO[person.slug]['twitter']['handle']
+            context['twitter_url'] = CONTACT_INFO[person.slug]['twitter']['url']
 
         if person.slug in MANUAL_HEADSHOTS:
             person.headshot = 'images/' + MANUAL_HEADSHOTS[person.slug]['image']
 
+        context['feedback_url'] = 'https://pittsburghpa.gov/council/d{}-feedback'.format(person.current_council_seat.
+                                                                                         split(' ')[1])
         return context
 
 

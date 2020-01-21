@@ -61,15 +61,27 @@
             <img src='{% static person.headshot.url %}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail img-padded' id="person-detail-headshot" />
 
             <p class="small">
-                {% if person.email %}
-                    <i class='fa fa-fw fa-envelope-o'></i>
-                    <a href="mailto:{{person.email}}">{{person.email | strip_mailto}}</a>
+                {% if website %}
+                    <i class='fa fa-fw fa-user'></i>
+                    <a href="{{website}}" target="_blank">Website</a>
                 {% endif %}
             </p>
             <p class="small">
-                {% if person.website_url %}
-                    <i class='fa fa-fw fa-user'></i>
-                    <a href="{{person.website_url}}" target="_blank">Website</a>
+                {% if email %}
+                    <i class='fa fa-fw fa-envelope-o'></i>
+                    <a href="mailto:{{email}}">Office email: {{email | strip_mailto}}</a>
+                {% endif %}
+            </p>
+            <p class="small">
+                {% if phone %}
+                    <i class='fa fa-fw fa-phone'></i>
+                    {{phone}}
+                {% endif %}
+            </p>
+            <p class="small">
+                {% if twitter_handle %}
+                    <i class='fa fa-fw fa-twitter'></i>
+                    <a href="{{twitter_url}}" target="_blank">{{twitter_handle}}</a>
                 {% endif %}
             </p>
 
@@ -98,15 +110,15 @@
                 </div>
                 <div class="col-xs-8">
                     <p class="small">
-                        {% if person.email %}
+                        {% if email %}
                             <i class='fa fa-fw fa-envelope-o'></i>
-                            <a href="mailto:{{person.email}}">{{person.email | strip_mailto}}</a>
+                            <a href="mailto:{{email}}">{{email | strip_mailto}}</a>
                         {% endif %}
                     </p>
                     <p class="small">
-                        {% if person.website_url %}
+                        {% if website %}
                             <i class='fa fa-fw fa-user'></i>
-                            <a href="{{person.website_url}}">Website</a>
+                            <a href="{{website}}">Website</a>
                         {% endif %}
                     </p>
 
@@ -161,6 +173,11 @@
                 <p class="mobile-only">
                     <a class='btn btn-primary' href='/search/?q=&selected_facets=sponsorships_exact:{{person.name}}'>All sponsored legislation<i class='fa fa-fw fa-chevron-right'></i></a>
                 </p>
+                {% if feedback_url %}
+                    <p>
+                        <a class='btn btn-primary' href={{feedback_url}}>Constituents: Submit feedback<i class='fa fa-fw fa-chevron-right'></i></a>
+                    </p>
+                {% endif %}
             {% endif %}
 
             {% if request.GET.view == 'committees' %}
