@@ -56,12 +56,6 @@
             <img src='{% static person.headshot.url %}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail img-padded' id="person-detail-headshot" />
 
             <p class="small">
-                {% if website %}
-                    <i class='fa fa-fw fa-user'></i>
-                    <a href="{{website}}" target="_blank">Website</a>
-                {% endif %}
-            </p>
-            <p class="small">
                 {% if email %}
                     <i class='fa fa-fw fa-envelope-o'></i>
                     <a href="mailto:{{email}}">Office email: {{email | strip_mailto}}</a>
@@ -77,6 +71,19 @@
                 {% if twitter_handle %}
                     <i class='fa fa-fw fa-twitter'></i>
                     <a href="{{twitter_url}}" target="_blank">{{twitter_handle}}</a>
+                {% endif %}
+            </p>
+
+            <p class="small">
+                {% if website %}
+                    <i class='fa fa-fw fa-user'></i>
+                    <a href="{{website}}" target="_blank">Website</a>
+                {% endif %}
+            </p>
+
+            <p class="small">
+                {% if tenure_start %}
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i> In office since <strong>{{ tenure_start }}</strong></p>
                 {% endif %}
             </p>
 
@@ -129,6 +136,12 @@
         <div class='col-sm-8 no-pad-mobile'>
 {% endcache  %}
 
+            {% if feedback_url %}
+                <p>
+                    <a class='btn btn-primary' href={{feedback_url}}>Constituents: Submit feedback<i class='fa fa-fw fa-chevron-right'></i></a>
+                </p>
+            {% endif %}
+
             <ul class="nav nav-pills">
                 <li role="presentation" {% if request.GET.view == 'bills' or request.GET.view == None %}class='active' {% endif %}>
                     <a href="/person/{{person.slug}}/?view=bills">
@@ -168,11 +181,6 @@
                 <p class="mobile-only">
                     <a class='btn btn-primary' href='/search/?q=&selected_facets=sponsorships_exact:{{person.name}}'>All sponsored legislation<i class='fa fa-fw fa-chevron-right'></i></a>
                 </p>
-                {% if feedback_url %}
-                    <p>
-                        <a class='btn btn-primary' href={{feedback_url}}>Constituents: Submit feedback<i class='fa fa-fw fa-chevron-right'></i></a>
-                    </p>
-                {% endif %}
             {% endif %}
 
             {% if request.GET.view == 'committees' %}

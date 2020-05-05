@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr'
+        'URL': 'http://localhost:8983/solr/councilmatic'
     },
 }
 

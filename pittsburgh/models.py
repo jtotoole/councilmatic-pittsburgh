@@ -23,8 +23,19 @@ class PittsburghEvent(Event):
         proxy = True
         app_label = 'pittsburgh'
 
+    @classmethod
+    def most_recent_past_city_council_meeting(cls):
+        if hasattr(settings, 'CITY_COUNCIL_MEETING_NAME'):
+            return cls.objects\
+                .filter(name__icontains=settings.CITY_COUNCIL_MEETING_NAME)\
+                .filter(start_time__lt=datetime.now())\
+                .filter(description='')\
+                .latest('start_time')
+        else:
+            return None
+
 
 class PittsburghPerson(Person):
     def get_headshot(self):
         if self.slug in MANUAL_HEADSHOTS:
-            self.headshot.url = 'images/' + MANUAL_HEADSHOTS[self.slug]['image']
+            self.headshot.url = '/static/images/' + MANUAL_HEADSHOTS[self.slug]['image']
