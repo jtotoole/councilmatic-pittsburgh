@@ -53,8 +53,7 @@ class PittsburghCouncilMembersView(CouncilMembersView):
 
         for post in posts:
             if post.current_member.person.slug in MANUAL_HEADSHOTS:
-                post.current_member.person.headshot = '/static/images/' + \
-                                                          MANUAL_HEADSHOTS[post.current_member.person.slug]['image']
+                context['headshot'] = '/static/images/' + MANUAL_HEADSHOTS[post.current_member.person.slug]['image']
 
         return context
 
@@ -81,10 +80,11 @@ class PittsburghPersonDetailView(PersonDetailView):
             context['twitter_url'] = CONTACT_INFO[person.slug]['twitter']['url']
 
         if person.slug in MANUAL_HEADSHOTS:
-            person.headshot = 'images/' + MANUAL_HEADSHOTS[person.slug]['image']
+            context['headshot'] = '/static/images/' + MANUAL_HEADSHOTS[person.slug]['image']
 
-        context['feedback_url'] = 'https://pittsburghpa.gov/council/d{}-feedback'.format(person.current_council_seat.
-                                                                                         split(' ')[1])
+        if person.current_council_seat:
+            context['feedback_url'] = 'https://pittsburghpa.gov/council/d{}-feedback'.format(person.current_council_seat.
+                                                                                             split(' ')[1])
         return context
 
 

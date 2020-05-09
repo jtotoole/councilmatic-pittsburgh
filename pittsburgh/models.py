@@ -36,6 +36,8 @@ class PittsburghEvent(Event):
 
 
 class PittsburghPerson(Person):
-    def get_headshot(self):
+    @property
+    def headshot(self):
         if self.slug in MANUAL_HEADSHOTS:
-            self.headshot.url = '/static/images/' + MANUAL_HEADSHOTS[self.slug]['image']
+            self.headshot = '/static/images/' + MANUAL_HEADSHOTS[self.slug]['image']
+            return self.headshot

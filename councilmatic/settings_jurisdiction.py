@@ -326,50 +326,50 @@ ABOUT_BLURBS = {
 # the keys should match a person's slug
 
 MANUAL_HEADSHOTS = {
-    'william-peduto-03a1cbeed289': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/peduto.png'},
-    'reverend-ricky-v-burgess-e6be10da476b': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/burgess.jpg'},
-    'anthony-coghill-c227693ce28c': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/coghill.jpg'},
-    'deborah-l-gross-36696a2838ea': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/gross.jpg'},
-    'bobby-wilson-8d4fc4fb499e': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/wilson.jpg'},
-    'theresa-kail-smith-d8e06c1f56c0': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/smith.jpg'},
-    'bruce-a-kraus-98881f116f97': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/kraus.jpg'},
-    'r-daniel-lavelle-18f0114e8773': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/lavelle.jpg'},
-    'corey-oconnor-8993bcfc8d11': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/oconnor.jpg'},
-    'erika-strassburger-fc76f94ccd73': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/strassburger.jpg'},
+    'william-peduto-172d1b224aa8': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/peduto.png'},
+    'reverend-ricky-v-burgess-79367c05ccc0': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/burgess.jpg'},
+    'anthony-coghill-911845129454': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/coghill.jpg'},
+    'deborah-l-gross-8b903120e866': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/gross.jpg'},
+    'bobby-wilson-e679a51e2669': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/wilson.jpg'},
+    'theresa-kail-smith-9320eb3b8e0f': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/smith.jpg'},
+    'bruce-a-kraus-ed0bef8f6f80': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/kraus.jpg'},
+    'r-daniel-lavelle-b8138dbef608': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/lavelle.jpg'},
+    'corey-oconnor-a1303fb2a8e7': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/oconnor.jpg'},
+    'erika-strassburger-c92f61ae0ca1': {'source': 'pittsburghpa.gov', 'image': 'manual-headshots/strassburger.jpg'},
 }
 
 CONTACT_INFO = {
-    'william-peduto-03a1cbeed289': {'twitter': {'handle': '@billpeduto', 'url': 'https://twitter.com/billpeduto'},
+    'william-peduto-172d1b224aa8': {'twitter': {'handle': '@billpeduto', 'url': 'https://twitter.com/billpeduto'},
                                     'phone': '', 'website': 'https://pittsburghpa.gov/mayor/mayor-profile',
                                     'email': ''},
-    'reverend-ricky-v-burgess-e6be10da476b': {
+    'reverend-ricky-v-burgess-79367c05ccc0': {
         'twitter': {'handle': '@RevBurgessPgh', 'url': 'https://twitter.com/RevBurgessPgh'},
         'phone': '412-255-2137/412-255-8658', 'email': 'reverend.burgess@pittsburghpa.gov',
         'website': 'https://pittsburghpa.gov/council/burgess'},
-    'anthony-coghill-c227693ce28c': {
+    'anthony-coghill-911845129454': {
         'twitter': {'handle': '@CoghillAnthony', 'url': 'https://twitter.com/CoghillAnthony'},
         'phone': '412-255-2131', 'email': 'kaitlyn.fisher@pittsburghpa.gov',
         'website': 'https://pittsburghpa.gov/council/coghill'},
-    'deborah-l-gross-36696a2838ea': {'twitter': {'handle': '@DebGrosspgh', 'url': 'https://twitter.com/DebGrosspgh'},
+    'deborah-l-gross-8b903120e866': {'twitter': {'handle': '@DebGrosspgh', 'url': 'https://twitter.com/DebGrosspgh'},
                                      'phone': '412-255-2140', 'email': 'district7@pittsburghpa.gov',
                                      'website': 'https://pittsburghpa.gov/council/gross'},
-    'bobby-wilson-8d4fc4fb499e': {'twitter': {'handle': '@bobbywilson412', 'url': 'https://twitter.com/bobbywilson412'},
+    'bobby-wilson-e679a51e2669': {'twitter': {'handle': '@bobbywilson412', 'url': 'https://twitter.com/bobbywilson412'},
                                   'phone': '412-255-2135', 'email': '',
                                   'website': 'https://pittsburghpa.gov/council/d1'},
-    'theresa-kail-smith-d8e06c1f56c0': {'twitter': {'handle': '@tkailsmith', 'url': 'https://twitter.com/tkailsmith'},
+    'theresa-kail-smith-9320eb3b8e0f': {'twitter': {'handle': '@tkailsmith', 'url': 'https://twitter.com/tkailsmith'},
                                         'phone': '412-255-8963', 'email': 'jill.harris@pittsburghpa.gov',
                                         'website': 'https://pittsburghpa.gov/council/kail-smith'},
-    'bruce-a-kraus-98881f116f97': {'twitter': {'handle': '@BruceKraus', 'url': 'https://twitter.com/BruceKraus'},
+    'bruce-a-kraus-ed0bef8f6f80': {'twitter': {'handle': '@BruceKraus', 'url': 'https://twitter.com/BruceKraus'},
                                    'phone': '412-255-2130', 'email': 'robert.charland@pittsburghpa.gov',
                                    'website': 'https://pittsburghpa.gov/council/kraus'},
-    'r-daniel-lavelle-18f0114e8773': {'twitter': {'handle': '@RDLavelle', 'url': 'https://twitter.com/RDLavelle'},
+    'r-daniel-lavelle-b8138dbef608': {'twitter': {'handle': '@RDLavelle', 'url': 'https://twitter.com/RDLavelle'},
                                       'phone': '412-255-2134', 'email': 'cassandra.williams@pittsburghpa.gov',
                                       'website': 'https://pittsburghpa.gov/council/lavelle'},
-    'corey-oconnor-8993bcfc8d11': {
+    'corey-oconnor-a1303fb2a8e7': {
         'twitter': {'handle': '@CoreyOConnorPGH', 'url': 'https://twitter.com/CoreyOConnorPGH'},
         'phone': '412-255-8965', 'email': 'connie.sukernek@pittsburghpa.gov',
         'website': 'https://pittsburghpa.gov/council/oconnor'},
-    'erika-strassburger-fc76f94ccd73': {
+    'erika-strassburger-c92f61ae0ca1': {
         'twitter': {'handle': '@erikastrassbrgr', 'url': 'https://twitter.com/erikastrassbrgr'},
         'phone': '412-255-2133', 'email': 'erika.strassburger@pittsburghpa.gov',
         'website': 'https://pittsburghpa.gov/council/strassburger'},
@@ -377,7 +377,7 @@ CONTACT_INFO = {
 # notable positions that aren't district representatives, e.g. mayor & city clerk
 # keys should match person slugs
 EXTRA_TITLES = {
-    'william-peduto-03a1cbeed289': 'Mayor',
+    'william-peduto-172d1b224aa8': 'Mayor',
 }
 
 USING_NOTIFICATIONS = True

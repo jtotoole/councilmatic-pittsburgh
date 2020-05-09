@@ -53,7 +53,11 @@
     </div>
     <div class="row-fluid">
         <div class="col-sm-4 non-mobile-only">
-            <img src='{% static person.headshot.url %}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail img-padded' id="person-detail-headshot" />
+            {% if headshot %}
+                <img src='{{headshot}}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail img-padded' id="person-detail-headshot" />
+            {% else %}
+                <img src='{% static person.headshot.url %}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail img-padded' id="person-detail-headshot" />
+            {% endif %}
 
             <p class="small">
                 {% if email %}
@@ -108,7 +112,11 @@
         <div class="col-sm-4 mobile-only">
             <div class="row">
                 <div class="col-xs-4">
-                    <img src='{% static person.headshot.url %}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail' />
+                    {% if headshot %}
+                        <img src='{{headshot}}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail' />
+                    {% else %}
+                        <img src='{% static person.headshot.url %}' alt='{{person.name}}' title='{{person.name}}' class='img-responsive img-thumbnail' />
+                    {% endif %}
                 </div>
                 <div class="col-xs-8">
                     <p class="small">
