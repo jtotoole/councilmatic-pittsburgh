@@ -5,17 +5,23 @@ from django.urls import reverse
 
 from datetime import date, timedelta, datetime
 
-from pittsburgh.models import PittsburghBill, PittsburghEvent
+from pittsburgh.models import PittsburghBill, PittsburghEvent, PittsburghPerson
 from councilmatic_core.views import *
 
 from haystack.query import SearchQuerySet
 
 from django.db.models import DateTimeField
 from django.db.models.functions import Cast
-from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS
+from councilmatic.settings_jurisdiction import MANUAL_HEADSHOTS, CONTACT_INFO
+
 
 class PittsburghIndexView(IndexView):
     template_name = 'pittsburgh/index.html'
+    bill_model = PittsburghBill
+    event_model = PittsburghEvent
+
+    def last_meeting(self):
+        return PittsburghEvent.most_recent_past_city_council_meeting()
 
 
 class PittsburghAboutView(AboutView):
@@ -24,14 +30,37 @@ class PittsburghAboutView(AboutView):
 
 class PittsburghEventsView(EventsView):
     template_name = 'pittsburgh/events.html'
+    event_model = PittsburghEvent
+
+
+class PittsburghEventDetailView(DetailView):
+    template_name = 'pittsburgh/event.html'
+    model = PittsburghEvent
+
+    def get_context_data(self, **kwargs):
+        context = super(PittsburghEventDetailView, self).get_context_data(**kwargs)
+        event = context['event']
 
 
 class PittsburghCouncilMembersView(CouncilMembersView):
-    template_name = 'pittsburgh/council_members.html'
+    template_name = 'pittsburgh/council-members.html'
+    person_model = PittsburghPerson
+
+    def get_context_data(self, **kwargs):
+        context = super(PittsburghCouncilMembersView, self).get_context_data(**kwargs)
+
+        posts = context['posts']
+
+        for post in posts:
+            if post.current_member.person.slug in MANUAL_HEADSHOTS:
+                context['headshot'] = '/static/images/' + MANUAL_HEADSHOTS[post.current_member.person.slug]['image']
+
+        return context
 
 
 class PittsburghPersonDetailView(PersonDetailView):
     template_name = 'pittsburgh/person.html'
+    person_model = PittsburghPerson
 
     def get_context_data(self, **kwargs):
         context = super(PittsburghPersonDetailView, self).get_context_data(**kwargs)
@@ -43,14 +72,19 @@ class PittsburghPersonDetailView(PersonDetailView):
 
         context['chair_positions'] = person.chair_role_memberships
 
-        if person.slug in settings.CONTACT_INFO:
-            context['phone'] = settings.CONTACT_INFO[person.slug]['phone']
-            context['twitter_handle'] = settings.CONTACT_INFO[person.slug]['twitter']['handle']
-            context['twitter_url'] = settings.CONTACT_INFO[person.slug]['twitter']['url']
+        if person.slug in CONTACT_INFO:
+            context['phone'] = CONTACT_INFO[person.slug]['phone']
+            context['website'] = CONTACT_INFO[person.slug]['website']
+            context['email'] = CONTACT_INFO[person.slug]['email']
+            context['twitter_handle'] = CONTACT_INFO[person.slug]['twitter']['handle']
+            context['twitter_url'] = CONTACT_INFO[person.slug]['twitter']['url']
 
         if person.slug in MANUAL_HEADSHOTS:
-            person.headshot = 'images/' + MANUAL_HEADSHOTS[person.slug]['image']
+            context['headshot'] = '/static/images/' + MANUAL_HEADSHOTS[person.slug]['image']
 
+        if person.current_council_seat:
+            context['feedback_url'] = 'https://pittsburghpa.gov/council/d{}-feedback'.format(person.current_council_seat.
+                                                                                             split(' ')[1])
         return context
 
 

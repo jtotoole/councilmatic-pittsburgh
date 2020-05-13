@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^about/$', PittsburghAboutView.as_view(), name='about'),
     url(r'^$', PittsburghIndexView.as_view(), name='index'),
     url(r'^person/(?P<slug>[^/]+)/$', PittsburghPersonDetailView.as_view(), name='person'),
-    url(r'^council-members/', PittsburghCouncilMembersView.as_view(), name='council_members'),
+    url(r'^council-members/', PittsburghCouncilMembersView.as_view(), name='council-members'),
+    url(r'^event/$', PittsburghEventDetailView.as_view(), name='event'),
     url(r'', include('councilmatic_core.urls')),
 ]
 
