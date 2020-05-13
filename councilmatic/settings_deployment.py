@@ -50,7 +50,9 @@ ANALYTICS_TRACKING_CODE = ''
 # Google Maps API Key
 GOOGLE_API_KEY = os.getenv('GOOGLE_MAPS_KEY')
 
-HEADSHOT_PATH = os.path.join(os.path.dirname(__file__), '..'
-                             '/pittsburgh/static/images/')
+# HEADSHOT_PATH = os.path.join(os.path.dirname(__file__), '..'
+#                              '/pittsburgh/static/images/')
+
+STATIC_PATH = os.path.join(os.path.dirname(__file__), '..', 'pittsburgh', 'static')
 
 EXTRA_APPS = ()
