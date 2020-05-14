@@ -33,11 +33,3 @@ class PittsburghEvent(Event):
                 .latest('start_time')
         else:
             return None
-
-
-class PittsburghPerson(Person):
-    @property
-    def headshot(self):
-        if self.slug in MANUAL_HEADSHOTS:
-            self.headshot = '/static/images/' + MANUAL_HEADSHOTS[self.slug]['image']
-            return self.headshot
