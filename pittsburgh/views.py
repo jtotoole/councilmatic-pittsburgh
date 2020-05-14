@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from datetime import date, timedelta, datetime
 
-from pittsburgh.models import PittsburghBill, PittsburghEvent, PittsburghPerson
+from pittsburgh.models import PittsburghBill, PittsburghEvent
 from councilmatic_core.views import *
 
 from haystack.query import SearchQuerySet
@@ -44,7 +44,6 @@ class PittsburghEventDetailView(DetailView):
 
 class PittsburghCouncilMembersView(CouncilMembersView):
     template_name = 'pittsburgh/council-members.html'
-    person_model = PittsburghPerson
 
     def get_context_data(self, **kwargs):
         context = super(PittsburghCouncilMembersView, self).get_context_data(**kwargs)
@@ -60,7 +59,6 @@ class PittsburghCouncilMembersView(CouncilMembersView):
 
 class PittsburghPersonDetailView(PersonDetailView):
     template_name = 'pittsburgh/person.html'
-    person_model = PittsburghPerson
 
     def get_context_data(self, **kwargs):
         context = super(PittsburghPersonDetailView, self).get_context_data(**kwargs)
